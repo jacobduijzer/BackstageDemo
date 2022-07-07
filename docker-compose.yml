@@ -1,13 +1,13 @@
 version: "3.8"
 
 services:
-  backstage.app:
-    image: backstage:latest
-    build:
-      context: backstagedemo/
-      dockerfile: packages/backend/Dockerfile
-    ports:
-      - 7007:7007
+  #  backstage.app:
+  #    image: backstage:latest
+  #    build:
+  #      context: backstagedemo/
+  #      dockerfile: packages/backend/Dockerfile
+  #    ports:
+  #      - 7007:7007
 
   backstage.db:
     image: library/postgres:11
