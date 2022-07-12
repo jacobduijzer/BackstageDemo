@@ -37,3 +37,8 @@ site
 
 # Sensitive credentials
 *-credentials.yaml
+
+packages/*/dist
+packages/*/node_modules
+plugins/*/dist
+plugins/*/node_modules
