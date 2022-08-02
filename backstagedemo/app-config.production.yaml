@@ -46,4 +46,5 @@ techdocs:
     type: 'azureBlobStorage'
     containerName: ${TECHDOCS_CONTAINER_NAME}
     credentials:
-      accountName: ${TECHDOCS_STORAGE_ACCOUNT}
+      accountName: ${TECHDOCS_STORAGE_ACCOUNT}     
+      accountKey: ${TECHDOCS_STORAGE_KEY}
