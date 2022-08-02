@@ -33,10 +33,10 @@ jobs:
     - name: 'Build and push image'
       uses: azure/docker-login@v1
       with:
-        login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-        username: ${{ secrets.REGISTRY_USERNAME }}
+        login-server: "crjacobapps.azurecr.io"
+        username: "crjacobapps"
         password: ${{ secrets.REGISTRY_PASSWORD }}  
     
     - run: |
-        docker image build . --file packages/backend/Dockerfile --tag ${{ secrets.REGISTRY_LOGIN_SERVER }}/backstage:${{ github.sha }}
-        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/backstage:${{ github.sha }}
+        docker image build . --file packages/backend/Dockerfile --tag crjacobapps.azurecr.io/backstage:${{ github.sha }}
+        docker push crjacobapps.azurecr.io/backstage:${{ github.sha }}
