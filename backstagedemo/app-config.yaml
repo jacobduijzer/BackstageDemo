@@ -1,6 +1,6 @@
 app:
   title: Scaffolded Backstage App
-  baseUrl: ${APP_BASE_URL}
+  baseUrl: https://rockstarsbackstagedemo.azurewebsites.net
   #baseUrl: http://localhost:3000
 
 organization:
