@@ -27,32 +27,39 @@ import { apis } from './apis';
 import { entityPage } from './components/catalog/EntityPage';
 import { searchPage } from './components/search/SearchPage';
 import { Root } from './components/Root';
-
-import { AlertDisplay, OAuthRequestDialog } from '@backstage/core-components';
+import { microsoftAuthApiRef } from '@backstage/core-plugin-api';
+import { 
+  AlertDisplay,
+  OAuthRequestDialog,
+  SignInPage
+} from '@backstage/core-components';
 import { createApp } from '@backstage/app-defaults';
 import { FlatRoutes } from '@backstage/core-app-api';
 import { CatalogGraphPage } from '@backstage/plugin-catalog-graph';
 import { PermissionedRoute } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
-import { microsoftAuthApiRef } from '@backstage/core-plugin-api';
-import { SignInPage } from '@backstage/core-components';
-const microsoftAuthProvider: SignInProviderConfig = {
-  id: 'azure-auth-provider',
-  title: 'Microsoft Active Directory',
-  message: 'Sign in to Backstage Application using your Active Directory account.',
-  apiRef: microsoftAuthApiRef,
-};
+
+const authProviders = [
+  {
+    id: 'microsoft-auth-provider',
+    title: 'Microsoft',
+    message: 'Login via Microsoft',
+    apiRef: microsoftAuthApiRef,
+  },
+]
+
 const app = createApp({
   apis,
   components: {
-
-    SignInPage: props => (
-    	<SignInPage
-      	{...props}
-        auto
-        provider={microsoftAuthProvider}
-      />
-    ),
+    SignInPage: props => {
+      return (
+          <SignInPage
+              {...props}
+              providers={authProviders}
+              align="center"
+          />
+      );
+    },
   },
   bindRoutes({ bind }) {
     bind(catalogPlugin.externalRoutes, {

@@ -67,9 +67,16 @@ techdocs:
     type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
 
 auth:
-  # see https://backstage.io/docs/auth/ to learn about auth providers
-  providers: {}
-
+  # see https://backstage.io/docs/tutorials/quickstart-app-auth to know more about enabling auth providers
+  providers:
+    microsoft:
+      development:
+        clientId:
+          $env: AUTH_MICROSOFT_CLIENT_ID
+        clientSecret:
+          $env: AUTH_MICROSOFT_CLIENT_SECRET
+        tenantId:
+          $env: AUTH_MICROSOFT_TENANT_ID
 scaffolder:
   # see https://backstage.io/docs/features/software-templates/configuration for software template options
 
@@ -89,3 +96,16 @@ catalog:
     #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/acme-corp.yaml
     #   rules:
     #     - allow: [User, Group]
+  providers:
+    microsoftGraphOrg:
+      default:
+        tenantId: AUTH_MICROSOFT_TENANT_ID
+        clientId: AUTH_MICROSOFT_CLIENT_ID
+        clientSecret: AUTH_MICROSOFT_CLIENT_SECRET
+        user:
+          filter: accountEnabled eq true and userType eq 'member'
+        group:
+          filter: >
+            securityEnabled eq false
+            and mailEnabled eq true
+            and groupTypes/any(c:c+eq+'Unified')
