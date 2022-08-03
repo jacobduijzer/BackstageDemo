@@ -34,9 +34,26 @@ import { FlatRoutes } from '@backstage/core-app-api';
 import { CatalogGraphPage } from '@backstage/plugin-catalog-graph';
 import { PermissionedRoute } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
-
+import { microsoftAuthApiRef } from '@backstage/core-plugin-api';
+import { SignInPage } from '@backstage/core-components';
+const microsoftAuthProvider: SignInProviderConfig = {
+  id: 'azure-auth-provider',
+  title: 'Microsoft Active Directory',
+  message: 'Sign in to Backstage Application using your Active Directory account.',
+  apiRef: microsoftAuthApiRef,
+};
 const app = createApp({
   apis,
+  components: {
+
+    SignInPage: props => (
+    	<SignInPage
+      	{...props}
+        auto
+        provider={microsoftAuthProvider}
+      />
+    ),
+  },
   bindRoutes({ bind }) {
     bind(catalogPlugin.externalRoutes, {
       createComponent: scaffolderPlugin.routes.root,
