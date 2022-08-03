@@ -44,7 +44,8 @@ techdocs:
   builder: external
   publisher:
     type: 'azureBlobStorage'
-    containerName: ${TECHDOCS_CONTAINER_NAME}
-    credentials:
-      accountName: ${TECHDOCS_STORAGE_ACCOUNT}     
-      accountKey: ${TECHDOCS_STORAGE_KEY}
+    azureBlobStorage:
+      containerName: ${TECHDOCS_CONTAINER_NAME}
+      credentials:
+        accountName: ${TECHDOCS_STORAGE_ACCOUNT}     
+        accountKey: ${TECHDOCS_STORAGE_KEY}
