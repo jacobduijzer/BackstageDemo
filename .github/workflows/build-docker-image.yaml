@@ -38,5 +38,5 @@ jobs:
         password: ${{ secrets.REGISTRY_PASSWORD }}  
     
     - run: |
-        docker image build . --file packages/backend/Dockerfile --tag crmainresources.azurecr.io/backstage:latest
-        docker push crmainresources.azurecr.io/backstage:latest
+        docker image build . --file packages/backend/Dockerfile --tag crmainresources.azurecr.io/backstage:${{ github.run_number }}
+        docker push crmainresources.azurecr.io/backstage:${{ github.run_number }}
